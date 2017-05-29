@@ -1,8 +1,6 @@
 import ROOT
 print "Using %s" % __file__
 
-#set the global output info level
-ROOT.gErrorIgnoreLevel = ROOT.kWarning
 # whitening
 ROOT.gStyle.SetFrameBorderMode(0)
 ROOT.gStyle.SetFrameFillColor(0)
@@ -39,7 +37,7 @@ ROOT.gStyle.SetTitleSize(0.05, 't')
 ROOT.gStyle.SetStatFontSize(0.04)
 
 # stat box
-ROOT.gStyle.SetOptStat(1)
+#ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetStatH(0.2)
 ROOT.gStyle.SetStatW(0.2)
 ROOT.gStyle.SetStatX(0.99)

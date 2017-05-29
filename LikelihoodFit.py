@@ -20,14 +20,9 @@ def options():
     parser.add_argument("--plotpath",  default="Plot")
     return parser.parse_args()
 
-
-
-
 def checkpath(outputpath):
     if not os.path.exists(outputpath):
         os.makedirs(outputpath)
-
-
 
 def GenEvent(n=20, par=[2.0]):
     '''generate random events, n is the length, 
@@ -43,20 +38,21 @@ def GenEvent(n=20, par=[2.0]):
 def PlotEvent(result=[]):
     '''generate a 1D plot, fill it by the arrys and return the histogram'''
     hist = ROOT.TH1D("h1","Generated Exponential data", 10, 0, 5*2)
-    for i in result:
-        hist.Fill(i)
+    for value in result:
+        hist.Fill(value)
     return hist
 
 
 class LogLikelihood:
-    '''calculate the log likelhood'''
+    '''calculate the log likelhood; also see this
+    https://gist.github.com/mgmarino/905920'''
     def __init__(self, events):
         self.events = events
 
     def __call__(self, x):
-        result = 0
-        for i in self.events:
-            result += ROOT.TMath.Log(1.0/x[0] * ROOT.TMath.Exp(-i/x[0]))
+        result = 0.0
+        for value in self.events:
+            result += ROOT.TMath.Log(1.0/x[0] * ROOT.TMath.Exp(-value/x[0]))
         return -result
 
 # Main
